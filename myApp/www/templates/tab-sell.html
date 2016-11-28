@@ -1,0 +1,95 @@
+<ion-view view-title="SELL" ng-init="updateDataLength()">
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+    <ion-header-bar class="bar bar-subheader bar-subheaderr item-input-inset" no-tap-scroll="true">
+            <div class="col" ng-repeat="obj in vm.objectss">
+
+                <div class="row">
+                    <span ng-click="vm.cancelItem(obj, vm.objectss.indexOf(obj))" class="button button-outline button-positive" ng-show="true">{{obj.name}} x{{vm.objects[obj.id]}} </span>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <h6 class="text-center">@ ${{obj.price}}</h5>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                  <div class="col" style="text-align: left">
+                      <h4 class="text-right">${{vm.total}}
+                          </h5>
+                  </div>
+                  <div class="col">
+                      <span ng-click="vm.sellItem()" class="button button-footer" ng-show="true">Checkout</span>
+                  </div>
+            </div>
+    </ion-header-bar>
+
+    <!-- <ion-header-bar class="bar bar-subsubheader bar-stable item-input-inset" no-tap-scroll="true">
+        <div class="row">
+            <div class="col">
+                <h4 class="text-center">Item ID
+                    </h5>
+            </div>
+            <div class="col">
+                <h4 class="text-center">Item
+                    </h5>
+            </div>
+            <div class="col">
+                <h4 class="text-center">Quantity
+                    </h5>
+            </div>
+        </div>
+    </ion-header-bar> -->
+<ion-content class="padding has-subheader">
+    <div class = "row" ng-repeat="num in vm.numofItems">
+      <div class = "col col-33">
+     <span ng-click="vm.addItem(vm.data[num])">
+
+      <button class="button button-block large_button" style="font-size : 20px;">
+
+          {{vm.data[num].name}} Qty:{{vm.data[num].quantity}}   ${{vm.data[num].price}}
+    </button>
+
+      </span>
+    </div>
+    <div class = "col col-33">
+   <span ng-click="vm.addItem(vm.data[num+1])">
+    <button class="button button-block large_button" style="font-size : 20px;">
+      {{vm.data[num+1].name}} Qty:{{vm.data[num+1].quantity}}   ${{vm.data[num+1].price}}
+    </button>
+    </span>
+  </div>
+  <div class = "col col-33">
+ <span ng-click="vm.addItem(vm.data[num+2])">
+  <button class="button button-block large_button" style="font-size : 20px;">
+    {{vm.data[num+2].name}} Qty:{{vm.data[num+2].quantity}}   ${{vm.data[num+2].price}}
+  </button>
+  </span>
+</div>
+
+    </div>
+</ion-content>
+
+
+
+    <!-- <ion-content class="padding has-headerr list-of-product">
+        <div class="row" ng-repeat="object in vm.data">
+            <div class="col text-left">
+                <h5 class="text-center">{{object.id}}</h5>
+            </div>
+            <div class="col text-centre">
+                <span ng-click="vm.addItem(object)">
+					<button class="button button-block">{{object.name}}</button>
+				</span>
+            </div>
+            <div class="col text-right">
+                <h5 class="text-center">{{object.quantity}}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <h5 class="text-center">{{vm.objects}}</h5>
+        </div>
+    </ion-content> -->
+</ion-view>

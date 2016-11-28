@@ -1,0 +1,161 @@
+<ion-view view-title="Edit Items">
+  <ion-nav-bar class="bar-calm">
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+    <div ng-if="!vm.isCreating && !vm.isEditing">
+        <ion-content class="padding has-header">
+            <!-- LIST -->
+            <div class="bar bar-header">
+                <!-- <span><button class="button button-positive" ng-click="vm.goToBackand()">Need Help?HAHA</button></span> -->
+                <span ng-click="vm.isCreating = true">
+                <button class="button button-positive">+ Add Item</button></span>
+            </div>
+
+
+            <div class="bar bar-subheader">
+                <div class="list card" ng-repeat="object in vm.data"
+                     ng-class="{'active':vm.isCurrent(object.id)}">
+                    <div class="item item-icon-left item-icon-right">
+                        <i class="ion-compose icon" ng-click="vm.setEdited(object)"></i>
+                        <div class="row">
+                          <div class="col">
+                        <h2 class="text-center">{{object.name}}</h2>
+                      </div>
+                        <div class="col">
+                        <h2 class="text-right">Qty: {{object.quantity}}</h2>
+                      </div>
+                        <i class="icon ion-close-round" ng-click="vm.delete(object.id)"></i>
+                      </div>
+                    </div>
+                    <!---<div class="item item-body">
+                        {{object.date}}
+                    </div> --->
+                </div>
+            </div>
+        </ion-content>
+    </div>
+    <div ng-if="vm.isCreating">
+        <ion-content class="padding has-header">
+            <!-- CREATING -->
+            <div class="bar bar-header">
+                <h2 class="title">Create Item</h2>
+                <span ng-click="vm.cancelCreate()" class="cancel-create">Cancel</span>
+            </div>
+            <div class="bar bar-subheader">
+                <form class="create-form" role="form"
+                      ng-submit="vm.create(vm.newObject)" novalidate>
+                    <div class="list">
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Name</span>
+                            <input type="text" class="form-control"
+                                   ng-model="vm.newObject.name"
+                                   placeholder="Enter name">
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Description</span>
+                        <textarea placeholder="Comments" class="form-control"
+                                  ng-model="vm.newObject.description"
+                                  placeholder="Enter description"></textarea>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Date</span>
+                        <textarea placeholder="Enter date" class="form-control"
+                                  ng-model="vm.newObject.date"
+                                  placeholder="Enter date"></textarea>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Merchandiser</span>
+                        <textarea placeholder="Enter name of merchandiser" class="form-control"
+                                  ng-model="vm.newObject.merchandiser"
+                                  placeholder="Enter name of merchandiser"></textarea>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Quantity</span>
+                        <textarea placeholder="Enter quantity" class="form-control"
+                                  ng-model="vm.newObject.quantity"
+                                  placeholder="Enter quantity"></textarea>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Cost</span>
+                        <textarea placeholder="Enter cost for each" class="form-control"
+                                  ng-model="vm.newObject.cost"
+                                  placeholder="Enter cost for each"></textarea>
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Price</span>
+                        <textarea placeholder="Comments" class="form-control"
+                                  ng-model="vm.newObject.price"
+                                  placeholder="Enter price"></textarea>
+                        </label>
+                    </div>
+                    <button class="button button-block button-positive" type="submit" ng-click="showPopup()" >Create</button>
+                </form>
+            </div>
+        </ion-content>
+    </div>
+    <div ng-if="vm.isEditing && !vm.isCreating">
+        <ion-content class="padding has-header">
+            <!-- EDITING -->
+            <div class="bar bar-header bar-secondary">
+                <h1 class="title">Editing {{vm.edited.name}}</h1>
+                <span ng-click="vm.cancelEditing()" class="cancel-create">Cancel</span>
+            </div>
+            <div class="bar bar-subheader">
+                <form class="edit-form" role="form"
+                      ng-submit="vm.update(vm.edited)" novalidate>
+                    <div class="list">
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Name</span>
+                            <input type="text" class="form-control"
+                                   ng-model="vm.edited.name"
+                                   placeholder="Enter name">
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Description</span>
+                    <textarea class="form-control"
+                              ng-model="vm.edited.description"
+                              placeholder="Enter description"></textarea>
+
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Date</span>
+                    <textarea class="form-control"
+                              ng-model="vm.edited.date"
+                              placeholder="Enter date"></textarea>
+
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Merchandiser</span>
+                    <textarea class="form-control"
+                              ng-model="vm.edited.merchandiser"
+                              placeholder="Enter merchandiser"></textarea>
+
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Quantity</span>
+                    <textarea class="form-control"
+                              ng-model="vm.edited.quantity"
+                              placeholder="Enter quantity"></textarea>
+
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Cost</span>
+                    <textarea class="form-control"
+                              ng-model="vm.edited.cost"
+                              placeholder="Enter cost"></textarea>
+
+                        </label>
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Price</span>
+                    <textarea class="form-control"
+                              ng-model="vm.edited.price"
+                              placeholder="Enter price"></textarea>
+
+                        </label>
+                    </div>
+                    <button class="button button-block button-positive" type="submit">Save</button>
+                </form>
+            </div>
+        </ion-content>
+    </div>
+</ion-view>

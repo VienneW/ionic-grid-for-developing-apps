@@ -1,0 +1,32 @@
+<ion-view view-title="Current Stock">
+  <ion-nav-bar class="bar-balanced">
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+    <!-- <ion-content class="padding has-header"> -->
+      <ion-refresher pulling-text="Pull To Refresh" on-refresh="vm.getAll()"
+        refreshing-text="Fetching ..." refreshing-icon="ion-loading-b"
+      ></ion-refresher>
+        <!-- <div class="bar bar-header bar-balanced">
+
+
+            <h1 class="title">Current Stock</h1>
+        </div> -->
+        <div class="bar bar-subheader">
+              <div class="row">
+                <h5 class="col-20">Name</h5>
+                <h5 class="col-20">Quantity</h5>
+                <h5 class="col-20">Sold</h5>
+                <h5 class="col-20">Price</h5>
+                <h5 class="col-20">Cost</h5>
+              </div>
+              <div class="row" ng-repeat="object in vm.data"
+                ng-class="{'active':vm.isCurrent(object.id)}">
+                <div class="col-20">{{object.name}}</div>
+                <div class="col-20">{{object.quantity}}</div>
+                <div class="col-20">{{object.sold}}</div>
+                <div class="col-20">{{object.price}}</div>
+                <div class="col-20">{{object.cost}}</div>
+              </div>
+        </div>
+    <!-- </ion-content> -->
+</ion-view>
